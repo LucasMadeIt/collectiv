@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  background: linear-gradient(160deg, #121212, #1c1c1c, #2a2a2a);
+  color: #fff;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ambient wave animation */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  width: 200%;
+  height: 200px;
+  background: radial-gradient(circle at 50% 100%, #1a1a1a 0%, #121212 80%);
+  animation: waveAnim 8s ease-in-out infinite;
+  opacity: 0.15;
+  z-index: -1;
+}
+@keyframes waveAnim {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+}
+
+/* Layout containers */
+.landing {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.8s ease;
+}
+.landing-box {
+  text-align: center;
+  padding: 40px;
+  background: rgba(30,30,30,0.85);
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  max-width: 480px;
+  width: 90%;
+}
+
+/* Headings and text */
+.landing-box h1,
+.landing-box h2 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #eee;
+  text-shadow: none;
+  font-size: 32px;
+}
+.landing-box p {
+  font-weight: 400;
+  color: #bbb;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+
+.landing-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(135deg, #111111, #333333);
+  border: 1.5px solid #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+.btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #333333, #555555);
+  border-color: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  color: #00ffff;
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Large CTA buttons */
+.big-btn {
+  font-size: 18px;
+  padding: 14px 0;
+  font-weight: 700;
+  border-radius: 10px;
+  user-select: none;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* Smaller font for Add Idea button */
+#add-idea-btn {
+  font-size: 14px !important;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Inputs and textarea */
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: #222;
+  color: #ddd;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  box-shadow: none;
+  outline: none;
+  transition: border-color 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #00ffff;
+  background: #292929;
+}
+
+/* Team ID display top-left */
+#team-id-display {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 8px 12px;
+  background: #00ffff;
+  color: #000;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+#team-id-display:hover {
+  background: #00dddd;
+}
+
+/* Main container for ideas and votes */
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  background: #181818;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #eee;
+}
+
+.container h1,
+.container h2 {
+  font-weight: 700;
+  margin-top: 0;
+  text-align: center;
+  color: #fff;
+}
+.container p {
+  font-weight: 400;
+  color: #ccc;
+  text-align: center;
+  margin-top: 0;
+  line-height: 1.5;
+}
+
+/* Idea cards */
+.idea-card {
+  position: relative;
+  background: #222;
+  padding: 18px 18px 40px 18px; /* extra bottom padding for vote buttons */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.08);
+  font-family: 'Inter', sans-serif;
+  color: #eee;
+}
+
+/* Remove "X" button in top right */
+.remove-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+  padding: 0;
+  line-height: 1;
+}
+.remove-x:hover {
+  color: #fff;
+}
+
+/* Vote buttons row */
+.vote-buttons-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Vote buttons */
+.vote-btn {
+  background: linear-gradient(135deg, #111111, #333333);
+  border: 1.5px solid #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+  white-space: nowrap;
+}
+.vote-btn:hover {
+  background: linear-gradient(135deg, #333333, #555555);
+  border-color: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  color: #00ffff;
+}
+
+/* Active vote button styling */
+.vote-btn.active {
+  background: #00ffff;
+  border-color: #00cccc;
+  color: #000;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin: 40px 10px;
+    padding: 20px;
+  }
+  .landing-box {
+    width: 95%;
+  }
+}
+
+/* Fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle spacing between main sections in the main UI */
+#input-section,
+#voting-section {
+  margin-top: 20px; /* small vertical gap */
+}
+
+#voting-section h2 {
+  margin-top: 30px; /* slight gap before leaderboard */
+}
