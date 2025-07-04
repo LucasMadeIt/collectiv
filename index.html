@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌟 Collectiv - Vote on the Best Ideas!</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Opening Page -->
+  <div id="start-page" class="landing">
+    <div class="landing-box">
+      <h1>🌟 Collectiv</h1>
+      <p>Collaborate. Share ideas. Work as a Collectiv.</p>
+      <div class="landing-buttons">
+        <button class="btn big-btn" onclick="showCreateView()">🚀 Create a Team</button>
+        <button class="btn big-btn" onclick="showJoinView()">🔗 Join a Team</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Team Page -->
+  <div id="create-team-page" class="landing" style="display:none;">
+    <div class="landing-box">
+      <h2>🌟 Collectiv - Create a Team</h2>
+      <p>Click below to create a new team and get your Team ID:</p>
+      <div class="landing-buttons">
+        <button class="btn big-btn" onclick="createTeam()">Create New Team</button>
+        <button class="btn" onclick="goBack()">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Team Page -->
+  <div id="join-team-page" class="landing" style="display:none;">
+    <div class="landing-box">
+      <h2>🌟 Collectiv - Join a Team</h2>
+      <p>Enter your Team ID below to join:</p>
+      <input
+        type="text"
+        id="team-invite-link"
+        placeholder="Example: HDG0AW"
+        maxlength="6"
+        autocomplete="off"
+        spellcheck="false"
+        autocapitalize="characters"
+        oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');"
+      />
+      <div class="landing-buttons">
+        <button class="btn big-btn" onclick="joinTeam()">Join Team</button>
+        <button class="btn" onclick="goBack()">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team ID Display -->
+  <div id="team-id-display" onclick="copyTeamId()" style="display:none;"></div>
+
+  <!-- Main UI -->
+  <div class="container" id="main-ui" style="display:none;">
+    <h1>🌟 Collectiv</h1>
+    <p>Submit your team's most creative ideas and vote for your favorite(s).</p>
+
+    <!-- Idea Submission -->
+    <div id="input-section">
+      <h2>Submit a New Idea</h2>
+      <input type="text" id="idea-title" placeholder="Idea title" />
+      <textarea id="idea-description" rows="3" placeholder="Brief description..."></textarea>
+      <button class="btn" id="add-idea-btn" onclick="addIdea()">Add Idea</button>
+    </div>
+
+    <!-- Voting -->
+    <div id="voting-section">
+      <h2 id="voting-header" style="display:none;">Vote on Ideas</h2>
+      <div id="vote-section"></div>
+
+      <h2>📊 Leaderboard</h2>
+      <div id="chart-container">
+        <canvas id="vote-chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
